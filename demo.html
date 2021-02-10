@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Markdown Demo</title>
+	<link rel="stylesheet" href="markdown.css">
+	<script src="markdown.js"></script>
+	<script src="highcharts.js"></script>
+	<style>
+		body{
+			display: flex;
+		}
+		textarea{
+			width: 45%;
+			height: 700px;
+		}
+		div.mark{
+			width: 45%;
+			min-height: 700px;
+			margin-left: 50px;
+			border: 2px solid black;
+			padding: 5px;
+		}
+	</style>
+	<script>
+		async function markdownFile(ele){
+			var text=await ele.files[0].text();
+			markdown(text.replaceAll('\r',''),ele.nextElementSibling.nextElementSibling);
+		}
+	</script>
+</head>
+<body>
+	<input type="file" onchange="javascript:markdownFile(this)">
+	<textarea onkeyup="javascript:markdown(this.value,this.nextElementSibling)" placeholder="you can see example in example.md!"></textarea>
+	<div class="mark"></div>
+</body>
+</html>
